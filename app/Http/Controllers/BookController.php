@@ -36,4 +36,20 @@ class BookController extends Controller
         return view('admin.edit_buku', compact('buku'));
     }
 
+    public function tambahBuku(Request $request)
+    {
+        $buku = new Book();
+        $buku->user_id = $request->user()->id;
+        $buku->nama_buku = $request->nama_buku;
+        $buku->pengarang = $request->pengarang;
+        $buku->penerbit = $request->penerbit;
+        $buku->tahun_terbit = $request->tahun_terbit;
+
+        try {
+            $buku->save();
+            return redirect()->route('view.buku');
+        } catch (\Throwable $th) {
+            return back()->withInput($request->only('nama_buku', 'pengarang', 'penerbit', 'tahun_terbit'))->with('error', 'Gagal menambahkan buku');
+        }
+    }
 }

@@ -64,9 +64,10 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="#" class="nav-item nav-link active"><i
+                    <a href="{{ route('dashboard.admin') }}" class="nav-item nav-link"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Buku</a>
+                    <a href="{{ route('view.buku') }}" class="nav-item nav-link active"><i
+                            class="fa fa-th me-2"></i>Buku</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Logout</a>
                 </div>
@@ -76,32 +77,63 @@
 
 
         <!-- Content Start -->
+        <div class="content">
+            <h2>Tambah Buku</h2>
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Tambah Buku</h6>
+                            <form method="POST" action="{{ route('tambah.buku') }}">
+                                @csrf
+                                @if (session('error'))
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success">
+                                        {{ Session::get('success') }}
+                                    </div>
+                                @endif
+                                @if (Session::has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ Session::get('error') }}
+                                    </div>
+                                @endif
+                                <div class="mb-3">
+                                    <label for="nama_buku" class="form-label">Nama Buku</label>
+                                    <input type="text" class="form-control" id="nama_buku" name="nama_buku">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pengarang" class="form-label">Pengarang</label>
+                                    <input type="text" class="form-control" id="pengarang" name="pengarang">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="penerbit" class="form-label">Penerbit</label>
+                                    <input type="text" class="form-control" id="penerbit" name="penerbit">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tahun_terbit" class="form-label">Tahun Terbit</label>
+                                    <input type="number" class="form-control" id="tahun_terbit" name="tahun_terbit">
+                                </div>
+                                <button type="submit" class="btn btn-primary" name="submit">Tambah</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Start -->
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
 
 
-        <!-- Sale & Revenue Start -->
-        <!-- Sale & Revenue End -->
-
-
-        <!-- Sales Chart Start -->
-        <!-- Sales Chart End -->
-
-
-        <!-- Recent Sales Start -->
-        <!-- Recent Sales End -->
-
-
-        <!-- Widgets Start -->
-        <!-- Widgets End -->
-
-
-        <!-- Footer Start -->
-        <!-- Footer End -->
-    </div>
-    <!-- Content End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->

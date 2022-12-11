@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Selamat Datang, </h6>
+                        <h6 class="mb-0">Selamat Datang, {{ $user->name }}</h6>
                         <span>Admin</span>
                     </div>
                 </div>
@@ -77,9 +77,61 @@
 
 
         <!-- Content Start -->
+        <div class="content">
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Daftar Buku</h6>
+                    </div>
 
+                    <div class="d-flex mb-2">
+                        <a class="btn btn-primary mb-2" href="{{ route('view.tambah.buku') }}">➕ Buat
+                            Buku</a>
+                    </div>
 
-        <!-- Sale & Revenue Start -->
+                    @if ($buku->isNotEmpty())
+                        <div class="table-responsive">
+                            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                <thead>
+                                    <tr class="text-white">
+                                        <th scope="col">No.</th>
+                                        <th scope="col">📨 Nama Buku</th>
+                                        <th scope="col">🔢 Nama Pengarang</th>
+                                        <th scope="col">⭐ Penerbit</th>
+                                        <th scope="col">📆 Tahun Terbit</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        @foreach ($buku as $bk)
+                                            <td class="text-center text-dark font-weight-bold">
+                                                {{ $loop->index + 1 }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                {{ $bk->nama_buku }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                {{ $bk->pengarang }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                {{ $bk->penerbit }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                {{ $bk->tahun_terbit }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                <a class="btn btn-danger btn-sm"
+                                                    href="{{ route('view.edit.buku', $bk->id) }}">🗑️ Edit</a>
+                                            </td>
+                                    </tr>
+                    @endforeach
+                    </tbody>
+                    </table>
+                </div>
+            @else
+                <div>
+                    <p class="card-text">Buku Tidak Ada!</p>
+                </div>
+                @endif
+            </div>
+        </div>
         <!-- Sale & Revenue End -->
 
 
@@ -98,12 +150,12 @@
         <!-- Footer Start -->
         <!-- Footer End -->
     </div>
+    </div>
     <!-- Content End -->
 
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

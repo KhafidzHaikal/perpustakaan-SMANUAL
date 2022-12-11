@@ -64,9 +64,10 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{{ route('edit.buku') }}" class="nav-item nav-link active"><i
+                    <a href="{{ route('dashboard.admin') }}" class="nav-item nav-link"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Buku</a>
+                    <a href="{{ route('view.buku') }}" class="nav-item nav-link active"><i
+                            class="fa fa-th me-2"></i>Buku</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Logout</a>
                 </div>
@@ -76,6 +77,9 @@
 
 
         <!-- Content Start -->
+        <div class="content">
+            <h2>Edit Buku</h2>
+        </div>
 
 
         <!-- Sale & Revenue Start -->
