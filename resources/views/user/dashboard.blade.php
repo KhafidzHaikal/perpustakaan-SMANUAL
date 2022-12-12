@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard User | Perpustakaan</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../img/svg/logo.svg" type="image/x-icon">
+    <link href="{{ URL::asset('./img/SMA/logo smanual.png') }}" rel="icon">
     <!-- Custom styles -->
     <link rel="stylesheet" href="../css/style.min.css">
 </head>

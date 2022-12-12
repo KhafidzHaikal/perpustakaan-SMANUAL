@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Daftar Buku | Perpustakaan</title>
+    <title>Edit Buku | Perpustakaan</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -59,17 +59,23 @@
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Selamat Datang, {{ $user->name }}</h6>
+                        <h6 class="mb-0">Selamat Datang, </h6>
                         <span>Admin</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="{{ route('dashboard.admin') }}" class="nav-item nav-link"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="{{ route('view.buku') }}" class="nav-item nav-link active"><i
+                    <a href="{{ route('view.buku') }}" class="nav-item nav-link"><i
                             class="fa fa-th me-2"></i>Buku</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Logout</a>
+                    <a href="{{ route('view.pinjam.buku') }}" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
+                    <form action={{ route('logout') }} method="POST">
+                        @csrf
+                        <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </button>
+                    </form>
                 </div>
             </nav>
         </div>
@@ -78,54 +84,23 @@
 
         <!-- Content Start -->
         <div class="content">
-            <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="bg-secondary text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Daftar Buku</h6>
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Peminjaman Buku</h6>
+                            
+                        </div>
                     </div>
-
-                    @if ($buku->isNotEmpty())
-                        <div class="table-responsive">
-                            <table class="table text-start align-middle table-bordered table-hover mb-0">
-                                <thead>
-                                    <tr class="text-white">
-                                        <th scope="col">No.</th>
-                                        <th scope="col">📨 Nama Buku</th>
-                                        <th scope="col">🔢 Nama Pengarang</th>
-                                        <th scope="col">⭐ Penerbit</th>
-                                        <th scope="col">📆 Tahun Terbit</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        @foreach ($buku as $bk)
-                                            <td class="text-center text-dark font-weight-bold">
-                                                {{ $loop->index + 1 }}</td>
-                                            <td class="text-start text-dark font-weight-bold">
-                                                {{ $bk->nama_buku }}</td>
-                                            <td class="text-start text-dark font-weight-bold">
-                                                {{ $bk->pengarang }}</td>
-                                            <td class="text-start text-dark font-weight-bold">
-                                                {{ $bk->penerbit }}</td>
-                                            <td class="text-start text-dark font-weight-bold">
-                                                {{ $bk->tahun_terbit }}</td>
-                                            <td class="text-start text-dark font-weight-bold">
-                                                <a class="btn btn-danger btn-sm" href="#">🗑️ Pinjam</a>
-                                            </td>
-                                    </tr>
-                    @endforeach
-                    </tbody>
-                    </table>
                 </div>
-            @else
-                <div>
-                    <p class="card-text">Buku Tidak Ada!</p>
-                </div>
-                @endif
             </div>
+
+            <!-- Footer Start -->
+            <!-- Footer End -->
         </div>
+
+
+        <!-- Sale & Revenue Start -->
         <!-- Sale & Revenue End -->
 
 
@@ -144,12 +119,9 @@
         <!-- Footer Start -->
         <!-- Footer End -->
     </div>
-    </div>
     <!-- Content End -->
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

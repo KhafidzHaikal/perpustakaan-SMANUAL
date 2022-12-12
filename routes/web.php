@@ -32,5 +32,7 @@ Route::get('/buku', [BookController::class, 'viewDaftarBuku'])->name('view.buku'
 Route::get('/buku/create', [BookController::class, 'viewTambahBuku'])->name('view.tambah.buku')->middleware(['auth', 'admin']);
 Route::post('/buku/create', [BookController::class, 'tambahBuku'])->name('tambah.buku')->middleware(['auth', 'admin']);
 Route::get('/buku/edit/{buku}', [BookController::class, 'viewEditBuku'])->name('view.edit.buku')->middleware(['auth', 'admin']);
-Route::put('/buku/{buku}', [BookController::class, 'editBuku'])->name('edit.buku')->middleware(['auth', 'admin']);
-Route::delete('/buku/{buku}', [BookController::class, 'hapusBuku'])->name('hapus.buku')->middleware(['auth', 'admin']);
+Route::post('/buku/{buku}', [BookController::class, 'editBuku'])->name('edit.buku')->middleware(['auth', 'admin']);
+Route::post('/buku/delete/{buku}', [BookController::class, 'hapusBuku'])->name('hapus.buku')->middleware(['auth', 'admin']);
+
+Route::get('/pinjam', [BookController::class, 'viewPinjamBuku'])->name('view.pinjam.buku')->middleware('auth');

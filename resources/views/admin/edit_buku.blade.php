@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="{{ URL::asset('img/favicon.ico') }}" rel="icon">
+    <link href="{{ URL::asset('./img/SMA/logo smanual.png') }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,8 +68,14 @@
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="{{ route('view.buku') }}" class="nav-item nav-link active"><i
                             class="fa fa-th me-2"></i>Buku</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Logout</a>
+                    <a href="{{ route('view.pinjam.buku') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
+                    <form action={{ route('logout') }} method="POST">
+                        @csrf
+                        <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </button>
+                    </form>
                 </div>
             </nav>
         </div>
@@ -78,7 +84,56 @@
 
         <!-- Content Start -->
         <div class="content">
-            <h2>Edit Buku</h2>
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Edit Buku</h6>
+                            <form method="POST" action="{{ route('edit.buku', $buku->id ) }}">
+                                @csrf
+                                @if (session('error'))
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success">
+                                        {{ Session::get('success') }}
+                                    </div>
+                                @endif
+                                @if (Session::has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ Session::get('error') }}
+                                    </div>
+                                @endif
+                                <div class="mb-3">
+                                    <label for="nama_buku" class="form-label">Nama Buku</label>
+                                    <input type="text" class="form-control" id="nama_buku" name="nama_buku" value="{{ old('nama_buku', $buku->nama_buku) }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pengarang" class="form-label">Pengarang</label>
+                                    <input type="text" class="form-control" id="pengarang" name="pengarang" value="{{ old('pengarang', $buku->pengarang) }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="penerbit" class="form-label">Penerbit</label>
+                                    <input type="text" class="form-control" id="penerbit" name="penerbit" value="{{ old('penerbit', $buku->penerbit) }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tahun_terbit" class="form-label">Tahun Terbit</label>
+                                    <input type="number" class="form-control" id="tahun_terbit"
+                                        name="tahun_terbit" value="{{ old('tahun_terbit', $buku->tahun_terbit) }}">
+                                </div>
+                                <button type="submit" class="btn btn-primary" name="submit">Edit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Start -->
+            <!-- Footer End -->
         </div>
 
 

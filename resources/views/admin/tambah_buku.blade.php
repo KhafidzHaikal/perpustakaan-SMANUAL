@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="{{ URL::asset('img/favicon.ico') }}" rel="icon">
+    <link href="{{ URL::asset('./img/SMA/logo smanual.png') }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,8 +68,14 @@
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="{{ route('view.buku') }}" class="nav-item nav-link active"><i
                             class="fa fa-th me-2"></i>Buku</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Logout</a>
+                    <a href="{{ route('view.pinjam.buku') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
+                    <form action={{ route('logout') }} method="POST">
+                        @csrf
+                        <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </button>
+                    </form>
                 </div>
             </nav>
         </div>
@@ -78,7 +84,6 @@
 
         <!-- Content Start -->
         <div class="content">
-            <h2>Tambah Buku</h2>
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-6">
@@ -117,7 +122,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="tahun_terbit" class="form-label">Tahun Terbit</label>
-                                    <input type="number" class="form-control" id="tahun_terbit" name="tahun_terbit">
+                                    <input type="number" class="form-control" id="tahun_terbit"
+                                        name="tahun_terbit">
                                 </div>
                                 <button type="submit" class="btn btn-primary" name="submit">Tambah</button>
                             </form>

@@ -68,8 +68,14 @@
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="{{ route('view.buku') }}" class="nav-item nav-link active"><i
                             class="fa fa-th me-2"></i>Buku</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Logout</a>
+                    <a href="{{ route('view.pinjam.buku') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
+                    <form action={{ route('logout') }} method="POST">
+                        @csrf
+                        <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </button>
+                    </form>
                 </div>
             </nav>
         </div>
@@ -119,6 +125,14 @@
                                             <td class="text-start text-dark font-weight-bold">
                                                 <a class="btn btn-danger btn-sm"
                                                     href="{{ route('view.edit.buku', $bk->id) }}">🗑️ Edit</a>
+                                                <form action={{ route('hapus.buku', $bk->id) }} method="POST">
+                                                    @csrf
+                                                    <button class=" btn btn-danger btn-sm">
+                                                        <i
+                                                            class="fa fa-trash"></i>
+                                                        Hapus
+                                                    </button>
+                                                </form>
                                             </td>
                                     </tr>
                     @endforeach
