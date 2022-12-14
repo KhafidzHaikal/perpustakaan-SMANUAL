@@ -36,3 +36,6 @@ Route::post('/buku/{buku}', [BookController::class, 'editBuku'])->name('edit.buk
 Route::post('/buku/delete/{buku}', [BookController::class, 'hapusBuku'])->name('hapus.buku')->middleware(['auth', 'admin']);
 
 Route::get('/pinjam', [BookController::class, 'viewPinjamBuku'])->name('view.pinjam.buku')->middleware('auth');
+Route::post('/pinjam/{buku}', [BookController::class, 'pinjamBuku'])->name('pinjam.buku')->middleware(['auth', 'user']);
+
+Route::get('/pengembalian', [BookController::class, 'viewPengembalianBuku'])->name('view.pengembalian.buku')->middleware('auth');

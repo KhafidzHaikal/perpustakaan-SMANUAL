@@ -13,14 +13,18 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <style>
+        body {
+            background: -webkit-linear-gradient(bottom, #2dbd6e, #a6f77b);
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 
 <body>
     <div class="layer"></div>
     <main class="page-center">
         <article class="sign-up">
-            <h1 class="sign-up__title">Sign Up</h1>
-            <p class="sign-up__subtitle">Start creating the best possible user experience for you customers</p>
             <form class="sign-up-form form" action="{{ route('signup') }}" method="POST">
                 @csrf
                 @if (session('error'))
@@ -41,6 +45,8 @@
                     </div>
                 @endif
                 <label class="form-label-wrapper">
+                    <h1 class="sign-up__title">Sign Up</h1>
+            <p class="sign-up__subtitle">Start creating the best possible user experience for you customers</p>
                     <p class="form-label">Name</p>
                     <input class="form-input" type="text" placeholder="Enter your name" name="name" required>
                 </label>

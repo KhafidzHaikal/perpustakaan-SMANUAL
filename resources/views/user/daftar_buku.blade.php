@@ -35,20 +35,15 @@
 <body>
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
-        <div id="spinner"
-            class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
+
         <!-- Spinner End -->
 
 
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
-                <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Perpustakaan</h3>
+                <a class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-solid fa-book me-2"></i>Perpustakaan</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -60,16 +55,23 @@
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0">Selamat Datang, {{ $user->name }}</h6>
-                        <span>Admin</span>
+                        <span>User</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{{ route('dashboard.admin') }}" class="nav-item nav-link"><i
+                    <a href="{{ route('dashboard.user') }}" class="nav-item nav-link"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="{{ route('view.buku') }}" class="nav-item nav-link active"><i
                             class="fa fa-th me-2"></i>Buku</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Logout</a>
+                    <a href="{{ route('view.pinjam.buku') }}" class="nav-item nav-link"><i
+                            class="fa fa-keyboard me-2"></i>Peminjaman</a>
+                    <form action={{ route('logout') }} method="POST">
+                        @csrf
+                        <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </button>
+                    </form>
                 </div>
             </nav>
         </div>
@@ -80,7 +82,7 @@
         <div class="content">
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="bg-secondary text-center rounded p-4">
+                <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">Daftar Buku</h6>
                     </div>
@@ -91,10 +93,10 @@
                                 <thead>
                                     <tr class="text-white">
                                         <th scope="col">No.</th>
-                                        <th scope="col">📨 Nama Buku</th>
-                                        <th scope="col">🔢 Nama Pengarang</th>
-                                        <th scope="col">⭐ Penerbit</th>
-                                        <th scope="col">📆 Tahun Terbit</th>
+                                        <th scope="col">Nama Buku</th>
+                                        <th scope="col">Nama Pengarang</th>
+                                        <th scope="col">Penerbit</th>
+                                        <th scope="col">Tahun Terbit</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -112,8 +114,13 @@
                                             <td class="text-start text-dark font-weight-bold">
                                                 {{ $bk->tahun_terbit }}</td>
                                             <td class="text-start text-dark font-weight-bold">
-                                                <a class="btn btn-danger btn-sm" href="#">🗑️ Pinjam</a>
-                                            </td>
+                                                <form action={{ route('pinjam.buku', $bk->id) }} method="POST">
+                                                    @csrf
+                                                    <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                        Pinjam
+                                                    </button>
+                                                </form>                                            </td>
                                     </tr>
                     @endforeach
                     </tbody>
@@ -148,8 +155,6 @@
     <!-- Content End -->
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

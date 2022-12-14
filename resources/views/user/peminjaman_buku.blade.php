@@ -34,20 +34,11 @@
 
 <body>
     <div class="container-fluid position-relative d-flex p-0">
-        <!-- Spinner Start -->
-        <div id="spinner"
-            class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
-
 
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
-                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                <a class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Perpustakaan</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
@@ -59,16 +50,18 @@
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Selamat Datang, </h6>
-                        <span>Admin</span>
+                        <h6 class="mb-0">Selamat Datang, {{ $user->name }}</h6>
+                        <span>User</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="{{ route('dashboard.admin') }}" class="nav-item nav-link"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="{{ route('view.buku') }}" class="nav-item nav-link active"><i
-                            class="fa fa-th me-2"></i>Buku</a>
-                    <a href="{{ route('view.pinjam.buku') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
+                    <a href="{{ route('view.buku') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Buku</a>
+                    <a href="{{ route('view.pinjam.buku') }}" class="nav-item nav-link active"><i
+                            class="fa fa-keyboard me-2"></i>Peminjaman</a>
+                    <a href="{{ route('view.pengembalian.buku') }}" class="nav-item nav-link"><i
+                            class="fa fa-keyboard me-2"></i>Pengembalian</a>
                     <form action={{ route('logout') }} method="POST">
                         @csrf
                         <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -83,30 +76,75 @@
 
 
         <!-- Content Start -->
-            <!-- Footer Start -->
-            <!-- Footer End -->
+        <div class="content">
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Peminjaman Buku</h6>
+                    </div>
+                    @if ($peminjaman->isNotEmpty())
+                        <div class="table-responsive">
+                            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                <thead>
+                                    <tr class="text-white">
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Nama Buku</th>
+                                        <th scope="col">Tanggal Peminjaman</th>
+                                        <th scope="col">Tanggal Pengembalian</th>
+                                        <th scope="col">Denda</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        @foreach ($peminjaman as $pmj)
+                                            <td class="text-center text-dark font-weight-bold">
+                                                {{ $loop->index + 1 }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                {{ $pmj->book_id }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                {{ $pmj->tanggal_peminjaman }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                {{ $pmj->tanggal_pengembalian }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                Rp. {{ $pmj->denda }}</td>
+                                    </tr>
+                    @endforeach
+                    </tbody>
+                    </table>
+                </div>
+            @else
+                <div>
+                    <p class="card-text text-dark">Peminjaman Tidak Ada!</p>
+                </div>
+                @endif
+            </div>
         </div>
-
-
-        <!-- Sale & Revenue Start -->
-        <!-- Sale & Revenue End -->
-
-
-        <!-- Sales Chart Start -->
-        <!-- Sales Chart End -->
-
-
-        <!-- Recent Sales Start -->
-        <!-- Recent Sales End -->
-
-
-        <!-- Widgets Start -->
-        <!-- Widgets End -->
-
-
-        <!-- Footer Start -->
-        <!-- Footer End -->
     </div>
+
+    <!-- Footer Start -->
+    <!-- Footer End -->
+
+
+    <!-- Sale & Revenue Start -->
+    <!-- Sale & Revenue End -->
+
+
+    <!-- Sales Chart Start -->
+    <!-- Sales Chart End -->
+
+
+    <!-- Recent Sales Start -->
+    <!-- Recent Sales End -->
+
+
+    <!-- Widgets Start -->
+    <!-- Widgets End -->
+
+
+    <!-- Footer Start -->
+    <!-- Footer End -->
+
     <!-- Content End -->
 
 

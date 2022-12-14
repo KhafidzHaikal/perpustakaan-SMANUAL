@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Anggota;
 use App\Models\Book;
+use App\Models\Peminjaman;
 use App\Models\Petugas;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +18,9 @@ class BookController extends Controller
 {
     public function viewDaftarBuku(Request $request)
     {
+
         $user = $request->user();
+
         $buku = Book::get();
 
         if ($user->peran == 'admin') {
@@ -28,13 +32,15 @@ class BookController extends Controller
 
     public function viewTambahBuku(Request $request)
     {
-        return view('admin.tambah_buku');
+        $user = $request->user();
+        return view('admin.tambah_buku', compact('user'));
     }
 
     public function viewEditBuku(Request $request, $id)
     {
+        $user = $request->user();
         $buku = Book::where('id', $id)->first();
-        return view('admin.edit_buku', compact('buku'));
+        return view('admin.edit_buku', compact('buku', 'user'));
     }
 
     public function tambahBuku(Request $request)
@@ -86,12 +92,47 @@ class BookController extends Controller
     public function viewPinjamBuku(Request $request)
     {
         $user = $request->user();
-        $buku = Book::get();
+        $peminjaman = Peminjaman::get();
+
 
         if ($user->peran == 'admin') {
-            return view('admin.peminjaman_buku', compact('user', 'buku'));
+            return view('admin.peminjaman_buku', compact('user', 'peminjaman'));
         } else {
-            return view('user.peminjaman_buku', compact('user', 'buku'));
+            $peminjaman = Peminjaman::where('user_id', $request->user()->id)->get();
+            return view('user.peminjaman_buku', compact('user', 'peminjaman'));
+        }
+    }
+
+    public function pinjamBuku(Request $request, $id)
+    {
+        $user = $request->user();
+        $buku = Book::where('id', $id)->first();
+
+        $peminjaman = new Peminjaman();
+        $peminjaman->user_id = $user->id;
+        $peminjaman->book_id = $buku->id;
+        $peminjaman->tanggal_peminjaman = Carbon::now();
+        $peminjaman->tanggal_pengembalian = Carbon::now()->addDays(7);
+        $peminjaman->denda = 0;
+
+        try {
+            $peminjaman->save();
+            return redirect()->route('view.pinjam.buku');
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Gagal Meminjam Buku');
+        }
+    }
+
+    public function viewPengembalianBuku(Request $request)
+    {
+        $user = $request->user();
+        // $peminjaman = Peminjaman::get();
+
+
+        if ($user->peran == 'admin') {
+            return view('admin.pengembalian_buku', compact('user'));
+        } else {
+            return view('user.pengembalian_buku', compact('user'));
         }
     }
 }

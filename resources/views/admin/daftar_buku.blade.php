@@ -34,20 +34,11 @@
 
 <body>
     <div class="container-fluid position-relative d-flex p-0">
-        <!-- Spinner Start -->
-        <div id="spinner"
-            class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
-
 
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
-                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                <a class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Perpustakaan</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
@@ -67,8 +58,9 @@
                     <a href="{{ route('dashboard.admin') }}" class="nav-item nav-link"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="{{ route('view.buku') }}" class="nav-item nav-link active"><i
-                            class="fa fa-th me-2"></i>Buku</a>
-                    <a href="{{ route('view.pinjam.buku') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Peminjaman</a>
+                            class="fa fa-book me-2"></i>Buku</a>
+                    <a href="{{ route('view.pinjam.buku') }}" class="nav-item nav-link"><i
+                            class="fa fa-keyboard me-2"></i>Peminjaman</a>
                     <form action={{ route('logout') }} method="POST">
                         @csrf
                         <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -86,9 +78,9 @@
         <div class="content">
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="bg-secondary text-center rounded p-4">
+                <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Daftar Buku</h6>
+                        <h6 class="mb-0 text-dark">Daftar Buku</h6>
                     </div>
 
                     <div class="d-flex mb-2">
@@ -100,7 +92,7 @@
                         <div class="table-responsive">
                             <table class="table text-start align-middle table-bordered table-hover mb-0">
                                 <thead>
-                                    <tr class="text-white">
+                                    <tr class="text-dark">
                                         <th scope="col">No.</th>
                                         <th scope="col">📨 Nama Buku</th>
                                         <th scope="col">🔢 Nama Pengarang</th>
@@ -124,12 +116,12 @@
                                                 {{ $bk->tahun_terbit }}</td>
                                             <td class="text-start text-dark font-weight-bold">
                                                 <a class="btn btn-danger btn-sm"
-                                                    href="{{ route('view.edit.buku', $bk->id) }}">🗑️ Edit</a>
+                                                    href="{{ route('view.edit.buku', $bk->id) }}"> <i
+                                                        class="fas fa-edit"></i> Edit </a>
                                                 <form action={{ route('hapus.buku', $bk->id) }} method="POST">
                                                     @csrf
                                                     <button class=" btn btn-danger btn-sm">
-                                                        <i
-                                                            class="fa fa-trash"></i>
+                                                        <i class="fa fa-trash"></i>
                                                         Hapus
                                                     </button>
                                                 </form>

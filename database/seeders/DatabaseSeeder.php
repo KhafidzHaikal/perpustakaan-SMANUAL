@@ -22,5 +22,12 @@ class DatabaseSeeder extends Seeder
         $admin->password = Hash::make("qweqweqwe");
         $admin->peran = "admin";
         $admin->save();
+
+        $admin = new User();
+        $admin->name = "Admin Utama";
+        $admin->email = "ujle@admin.com";
+        $admin->password = Hash::make("qweqweqwe");
+        $admin->peran = "admin";
+        $admin->save();
     }
 }

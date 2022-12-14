@@ -13,20 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('peminjamen', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('nama_buku');
-            $table->string('pengarang');
-            $table->string('penerbit');
-            $table->string('keyword')->unique()->nullable();
-            $table->date('tahun_terbit');
-            $table->string('tempat_buku')->nullable();
+            $table->unsignedBigInteger('book_id');
+            $table->date('tanggal_peminjaman');
+            $table->date('tanggal_pengembalian');
+            $table->bigInteger('denda')->default(0);
             $table->timestamps();
         });
 
-        Schema::table('books', function (Blueprint $table) {
+        Schema::table('peminjamen', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
+        });
+
+        Schema::table('peminjamen', function (Blueprint $table) {
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('CASCADE');
         });
     }
 
@@ -37,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('peminjamen');
     }
 };

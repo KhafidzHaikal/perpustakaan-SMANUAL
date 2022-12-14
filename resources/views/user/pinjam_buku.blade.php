@@ -37,9 +37,8 @@
 
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
-
             <nav class="navbar bg-secondary navbar-dark">
-                <a class="navbar-brand mx-4 mb-3">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Perpustakaan</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
@@ -52,15 +51,14 @@
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0">Selamat Datang, {{ $user->name }}</h6>
-                        <span>Admin</span>
+                        <span>User</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="{{ route('dashboard.admin') }}" class="nav-item nav-link"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="{{ route('view.buku') }}" class="nav-item nav-link active"><i
-                            class="fa fa-book me-2"></i>Buku</a>
-                    <a href="{{ route('view.pinjam.buku') }}" class="nav-item nav-link"><i
+                    <a href="{{ route('view.buku') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Buku</a>
+                    <a href="{{ route('view.pinjam.buku') }}" class="nav-item nav-link active"><i
                             class="fa fa-keyboard me-2"></i>Peminjaman</a>
                     <form action={{ route('logout') }} method="POST">
                         @csrf
@@ -77,81 +75,74 @@
 
         <!-- Content Start -->
         <div class="content">
+            <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Edit Buku</h6>
-                            <form method="POST" action="{{ route('edit.buku', $buku->id) }}">
-                                @csrf
-                                @if (session('error'))
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                                @if (Session::has('success'))
-                                    <div class="alert alert-success">
-                                        {{ Session::get('success') }}
-                                    </div>
-                                @endif
-                                @if (Session::has('error'))
-                                    <div class="alert alert-danger">
-                                        {{ Session::get('error') }}
-                                    </div>
-                                @endif
-                                <div class="mb-3">
-                                    <label for="nama_buku" class="form-label">Nama Buku</label>
-                                    <input type="text" class="form-control bg-light text-dark" id="nama_buku"
-                                        name="nama_buku" value="{{ old('nama_buku', $buku->nama_buku) }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="pengarang" class="form-label">Pengarang</label>
-                                    <input type="text" class="form-control bg-light text-dark" id="pengarang"
-                                        name="pengarang" value="{{ old('pengarang', $buku->pengarang) }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="penerbit" class="form-label">Penerbit</label>
-                                    <input type="text" class="form-control bg-light text-dark" id="penerbit"
-                                        name="penerbit" value="{{ old('penerbit', $buku->penerbit) }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="tahun_terbit" class="form-label">Tahun Terbit</label>
-                                    <input type="date" class="form-control bg-light text-dark" id="tahun_terbit"
-                                        name="tahun_terbit" value="{{ old('tahun_terbit', $buku->tahun_terbit) }}">
-                                </div>
-                                <button type="submit" class="btn btn-primary" name="submit">Edit</button>
-                            </form>
-                        </div>
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Daftar Buku</h6>
                     </div>
+                    @if ($peminjaman->isNotEmpty())
+                        <div class="table-responsive">
+                            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                <thead>
+                                    <tr class="text-white">
+                                        <th scope="col">No.</th>
+                                        <th scope="col">📨 Nama Buku</th>
+                                        <th scope="col">🔢 Nama Pengarang</th>
+                                        <th scope="col">⭐ Penerbit</th>
+                                        <th scope="col">📆 Tahun Terbit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        @foreach ($peminjaman as $bk)
+                                            <td class="text-center text-dark font-weight-bold">
+                                                {{ $loop->index + 1 }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                {{ $bk->book_id }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                {{ $bk->tanggal_peminjaman }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                {{ $bk->tanggal_pengembalian }}</td>
+                                            <td class="text-start text-dark font-weight-bold">
+                                                {{ $bk->denda }}</td>
+                                    </tr>
+                    @endforeach
+                    </tbody>
+                    </table>
                 </div>
+            @else
+                <div>
+                    <p class="card-text">Peminjaman Tidak Ada!</p>
+                </div>
+                @endif
             </div>
-
-            <!-- Footer Start -->
-            <!-- Footer End -->
         </div>
-
-
-        <!-- Sale & Revenue Start -->
-        <!-- Sale & Revenue End -->
-
-
-        <!-- Sales Chart Start -->
-        <!-- Sales Chart End -->
-
-
-        <!-- Recent Sales Start -->
-        <!-- Recent Sales End -->
-
-
-        <!-- Widgets Start -->
-        <!-- Widgets End -->
-
-
-        <!-- Footer Start -->
-        <!-- Footer End -->
     </div>
+
+    <!-- Footer Start -->
+    <!-- Footer End -->
+
+
+    <!-- Sale & Revenue Start -->
+    <!-- Sale & Revenue End -->
+
+
+    <!-- Sales Chart Start -->
+    <!-- Sales Chart End -->
+
+
+    <!-- Recent Sales Start -->
+    <!-- Recent Sales End -->
+
+
+    <!-- Widgets Start -->
+    <!-- Widgets End -->
+
+
+    <!-- Footer Start -->
+    <!-- Footer End -->
+    
     <!-- Content End -->
 
 

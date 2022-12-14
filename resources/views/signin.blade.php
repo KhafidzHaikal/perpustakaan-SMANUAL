@@ -14,14 +14,18 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <style>
+        body {
+            background: -webkit-linear-gradient(bottom, #2dbd6e, #a6f77b);
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 
 <body>
     <div class="layer"></div>
     <main class="page-center">
         <article class="sign-up">
-            <h1 class="sign-up__title">Selamat Datang</h1>
-            <p class="sign-up__subtitle ">Sign in to your account to continue</p>
             <form class="sign-up-form form" action="{{ route('login') }}" method="POST">
                 @csrf
                 @if (session('error'))
@@ -42,6 +46,8 @@
                     </div>
                 @endif
                 <label class="form-label-wrapper">
+                    <h1 class="sign-up__title">LOGIN</h1>
+                    <p class="sign-up__subtitle ">Sign in to your account to continue</p>
                     <p class="form-label">Email</p>
                     <input class="form-input" type="email" placeholder="Enter your email" name="email" required>
                 </label>
@@ -50,12 +56,12 @@
                     <input class="form-input" type="password" placeholder="Enter your password" name="password"
                         required>
                 </label>
-                <a class="link-info forget-link" href="{{ route('signup') }}">Register</a>
                 {{-- <label class="form-checkbox-wrapper">
-        <input class="form-checkbox" type="checkbox" required>
-        <span class="form-checkbox-label">Remember me next time</span>
-      </label> --}}
+                    <input class="form-checkbox" type="checkbox" required>
+                    <span class="form-checkbox-label">Remember me next time</span>
+                </label> --}}
                 <button class="form-btn primary-default-btn transparent-btn">Sign in</button>
+                <a class="link-info forget-link" href="{{ route('signup') }}">Register</a>
             </form>
         </article>
     </main>
