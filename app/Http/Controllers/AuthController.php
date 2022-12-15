@@ -72,7 +72,7 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password]) && $user->peran == 'admin') {
             $request->session()->regenerate();
-            return redirect()->route('dashboard.admin');
+            return redirect()->route('view.dashboard2.admin');
         } else if (Auth::attempt(['email' => $request->email, 'password' => $request->password]) && $user->peran == 'user') {
             $request->session()->regenerate();
             return redirect()->route('dashboard.user');

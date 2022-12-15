@@ -16,6 +16,7 @@ use App\Http\Controllers\BookController;
 */
 
 /* Dashboard */
+
 Route::get('/user/dashboard', [AuthController::class, 'dashboardUser'])->name('dashboard.user')->middleware(['auth', 'user']);
 Route::get('/admin/dashboard', [AuthController::class, 'dashboardAdmin'])->name('dashboard.admin')->middleware(['auth', 'admin']);
 
@@ -39,3 +40,11 @@ Route::get('/pinjam', [BookController::class, 'viewPinjamBuku'])->name('view.pin
 Route::post('/pinjam/{buku}', [BookController::class, 'pinjamBuku'])->name('pinjam.buku')->middleware(['auth', 'user']);
 
 Route::get('/pengembalian', [BookController::class, 'viewPengembalianBuku'])->name('view.pengembalian.buku')->middleware('auth');
+
+/** TERBARU */
+Route::get('/admin/dashboard2', [BookController::class, 'viewDashboardAdmin2'])->name('view.dashboard2.admin')->middleware(['auth', 'admin']);
+Route::get('/buku2', [BookController::class, 'viewDaftarBuku2'])->name('view.buku.2')->middleware('auth');
+Route::get('/buku/create2', [BookController::class, 'viewTambahBuku2'])->name('view.tambah.buku.2')->middleware(['auth', 'admin']);
+Route::get('/buku/edit2/{buku}', [BookController::class, 'viewEditBuku2'])->name('view.edit.buku.2')->middleware(['auth', 'admin']);
+Route::get('/pinjam2', [BookController::class, 'viewPinjamBuku2'])->name('view.pinjam.buku.2')->middleware('auth');
+Route::get('/pengembalian2', [BookController::class, 'viewPengembalianBuku2'])->name('view.pengembalian.buku.2')->middleware('auth');

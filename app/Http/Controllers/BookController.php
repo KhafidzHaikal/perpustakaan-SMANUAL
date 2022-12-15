@@ -54,7 +54,7 @@ class BookController extends Controller
 
         try {
             $buku->save();
-            return redirect()->route('view.buku');
+            return redirect()->route('view.buku.2');
         } catch (\Throwable $th) {
             return back()->withInput($request->only('nama_buku', 'pengarang', 'penerbit', 'tahun_terbit'))->with('error', 'Gagal menambahkan buku');
         }
@@ -73,7 +73,7 @@ class BookController extends Controller
             ]);
         });
 
-        return redirect()->route('view.buku');
+        return redirect()->route('view.buku.2')->with('success', 'Berhasil mengedit buku');;
     }
 
     public function hapusBuku(Request $request, $id)
@@ -117,7 +117,7 @@ class BookController extends Controller
 
         try {
             $peminjaman->save();
-            return redirect()->route('view.pinjam.buku');
+            return redirect()->route('view.pinjam.buku.2');
         } catch (\Throwable $th) {
             return back()->with('error', 'Gagal Meminjam Buku');
         }
@@ -133,6 +133,66 @@ class BookController extends Controller
             return view('admin.pengembalian_buku', compact('user'));
         } else {
             return view('user.pengembalian_buku', compact('user'));
+        }
+    }
+
+    public function viewDashboardAdmin2(Request $request)
+    {
+        $user = $request->user();
+        $buku = Book::count();
+        return view('admin.dashboard2', compact('user', 'buku'));
+    }
+
+    public function viewDaftarBuku2(Request $request)
+    {
+
+        $user = $request->user();
+
+        $buku = Book::get();
+
+        if ($user->peran == 'admin') {
+            return view('admin.daftar_buku2', compact('user', 'buku'));
+        } else {
+            return view('user.daftar_buku2', compact('user', 'buku'));
+        }
+    }
+
+    public function viewPinjamBuku2(Request $request)
+    {
+        $user = $request->user();
+        $peminjaman = Peminjaman::get();
+
+
+        if ($user->peran == 'admin') {
+            return view('admin.peminjaman_buku2', compact('user', 'peminjaman'));
+        } else {
+            $peminjaman = Peminjaman::where('user_id', $request->user()->id)->get();
+            return view('user.peminjaman_buku2', compact('user', 'peminjaman'));
+        }
+    }
+
+    public function viewTambahBuku2(Request $request)
+    {
+        $user = $request->user();
+        return view('admin.tambah_buku2', compact('user'));
+    }
+
+    public function viewEditBuku2(Request $request, $id)
+    {
+        $user = $request->user();
+        $buku = Book::where('id', $id)->first();
+        return view('admin.edit_buku2', compact('buku', 'user'));
+    }
+
+    public function viewPengembalianBuku2(Request $request)
+    {
+        $user = $request->user();
+        // $peminjaman = Peminjaman::get();
+
+        if ($user->peran == 'admin') {
+            return view('admin.pengembalian_buku2', compact('user'));
+        } else {
+            return view('user.pengembalian_buku2', compact('user'));
         }
     }
 }
