@@ -243,7 +243,7 @@
                                     <script>
                                         document.write(new Date().getFullYear())
                                     </script>
-                                    © UPT Perpustakaan dan Undip Press
+                                    © Perpustakaan SMA NU AL MA'RUF
                                 </p>
                             </div>
                         </div>

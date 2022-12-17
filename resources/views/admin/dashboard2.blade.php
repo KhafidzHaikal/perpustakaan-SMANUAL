@@ -175,7 +175,7 @@
                                 <script>
                                     document.write(new Date().getFullYear())
                                 </script>
-                                © Perpustakaan Al-Ma'ruf
+                                © Perpustakaan SMA NU AL MA'RUF
                             </p>
                         </div>
                     </div>
