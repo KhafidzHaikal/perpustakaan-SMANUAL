@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Daftar Buku | Perpustakaan SMA NU AL MA'RUF</title>
+    <title>Daftar Peminjaman | Perpustakaan SMA NU AL MA'RUF</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ asset('img/SMA/logo smanual.png') }}">
@@ -38,10 +38,10 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href="{{ route('view.dashboard2.admin') }}" target="_blank">
-                <img src="../img/SMA/logo smanual.png" class="navbar-brand-img h-100" alt="logo" width="15%"
+            <a class="navbar-brand m-0" href="{{ route('view.dashboard2.user') }}" target="_blank">
+                <img src="../images/undip.png" class="navbar-brand-img h-100" alt="logo" width="15%"
                     height="40%">
-                <span class="ms-1 fs-5 font-weight-bold">Dasbor Admin</span>
+                <span class="ms-1 fs-5 font-weight-bold">Dasbor User</span>
             </a>
         </div>
         {{-- LOGO END --}}
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active " href="{{ route('view.buku.2') }}">
+                    <a class="nav-link  " href="{{ route('view.buku.2') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             📧
@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  " href="{{ route('view.pinjam.buku.2') }}">
+                    <a class="nav-link active " href="{{ route('view.pinjam.buku.2') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             📨
@@ -118,13 +118,9 @@
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>Daftar Buku</h6>
+                            <h6>Daftar Peminjaman</h6>
 
                             <div class="row">
-                                <div class="col-2">
-                                    <a class="btn btn-primary mb-2" href="{{ route('view.tambah.buku.2') }}">Tambah
-                                        Buku</a>
-                                </div>
 
                                 <div class="col-2">
                                     <form action="#" method="get">
@@ -168,7 +164,7 @@
 
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
-                                @if ($buku->isNotEmpty())
+                                @if ($peminjaman->isNotEmpty())
                                     <table class="table table-striped table-hover align-items-center mb-0">
                                         <thead>
                                             <tr>
@@ -189,24 +185,27 @@
                                                     🥇 Tahun Terbit</th>
                                                 <th
                                                     class="text-end text-uppercase text-dark text-xs font-weight-bolder  ps-2">
-                                                    🔧 Aksi</th>
+                                                    🔧 Denda</th>
+                                                {{-- <th
+                                                    class="text-end text-uppercase text-dark text-xs font-weight-bolder  ps-2">
+                                                    🔧 Aksi</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($buku as $pgw)
+                                            @foreach ($peminjaman as $pgw)
                                                 <tr>
                                                     <td class="text-center text-dark font-weight-bold">
                                                         {{ $loop->index + 1 }}</td>
                                                     <td class="text-start text-dark font-weight-bold">
-                                                        {{ $pgw->nama_buku }}</td>
+                                                        {{ $pgw->user_id }}</td>
                                                     <td class="text-start text-dark font-weight-bold">
-                                                        {{ $pgw->pengarang }}</td>
+                                                        {{ $pgw->book_id }}</td>
                                                     <td class="text-start text-dark font-weight-bold">
-                                                        {{ $pgw->penerbit }}</td>
+                                                        {{ $pgw->tanggal_peminjaman }}</td>
                                                     <td class="text-start text-dark font-weight-bold">
-                                                        {{ $pgw->tahun_terbit }}</td>
+                                                        {{ $pgw->tanggal_pengembalian }}</td>
                                                     <td class="text-end">
-                                                        <a class="btn btn-warning btn-sm text-dark"
+                                                        {{-- <a class="btn btn-warning btn-sm text-dark"
                                                             style="color: #F6F5FC"
                                                             href="{{ route('view.edit.buku.2', $pgw->id) }}">🔍
                                                             Edit</a>
@@ -217,20 +216,20 @@
                                                                 <i class="fa fa-trash"></i>
                                                                 Hapus
                                                             </button>
-                                                        </form>
+                                                        </form> --}}
                                                     </td>
                                                 </tr>
                                             @endforeach
                                         @else
                                             <div>
-                                                <p class="card-text">Buku Tidak Ada!</p>
+                                                <p class="card-text">Peminjaman Tidak Ada!</p>
                                             </div>
                                 @endif
                                 </tbody>
                                 </table>
                             </div>
                             <div class="d-flex justify-content-end">
-                                {{-- {{ $buku->links() }} --}}
+                                {{-- {{ $peminjaman->links() }} --}}
                             </div>
                         </div>
                     </div>
@@ -248,7 +247,7 @@
                                     <script>
                                         document.write(new Date().getFullYear())
                                     </script>
-                                    © UPT Perpustakaan dan Undip Press
+                                    © Perpustakaan SMA NU AL MA'RUF
                                 </p>
                             </div>
                         </div>

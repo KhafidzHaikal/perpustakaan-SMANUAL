@@ -41,7 +41,7 @@
             <a class="navbar-brand m-0" href="{{ route('view.dashboard2.admin') }}" target="_blank">
                 <img src="../img/SMA/logo smanual.png" class="navbar-brand-img h-100" alt="logo" width="15%"
                     height="40%">
-                <span class="ms-1 fs-5 font-weight-bold">Dasbor Admin</span>
+                <span class="ms-1 fs-5 font-weight-bold">Dasbor User</span>
             </a>
         </div>
         {{-- LOGO END --}}
@@ -52,7 +52,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link  " href="{{ route('view.dashboard2.admin') }}">
+                    <a class="nav-link  " href="{{ route('view.dashboard2.user') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             💻
@@ -121,10 +121,6 @@
                             <h6>Daftar Buku</h6>
 
                             <div class="row">
-                                <div class="col-2">
-                                    <a class="btn btn-primary mb-2" href="{{ route('view.tambah.buku.2') }}">Tambah
-                                        Buku</a>
-                                </div>
 
                                 <div class="col-2">
                                     <form action="#" method="get">
@@ -206,16 +202,12 @@
                                                     <td class="text-start text-dark font-weight-bold">
                                                         {{ $pgw->tahun_terbit }}</td>
                                                     <td class="text-end">
-                                                        <a class="btn btn-warning btn-sm text-dark"
-                                                            style="color: #F6F5FC"
-                                                            href="{{ route('view.edit.buku.2', $pgw->id) }}">🔍
-                                                            Edit</a>
-                                                        <form action={{ route('hapus.buku', $pgw->id) }}
+                                                        <form action={{ route('pinjam.buku', $pgw->id) }}
                                                             method="POST">
                                                             @csrf
                                                             <button class=" btn btn-danger btn-sm">
                                                                 <i class="fa fa-trash"></i>
-                                                                Hapus
+                                                                Pinjam
                                                             </button>
                                                         </form>
                                                     </td>
@@ -248,7 +240,7 @@
                                     <script>
                                         document.write(new Date().getFullYear())
                                     </script>
-                                    © UPT Perpustakaan dan Undip Press
+                                    © Perpustakaan SMA NU AL MA'RUF
                                 </p>
                             </div>
                         </div>

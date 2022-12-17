@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>Pengembalian Buku | Surat UPT</title>
+    <title>Pengembalian Buku | Perpustakaan SMA NU AL MA'RUF</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ asset('images/undip.png') }}">
+    <link rel="icon" href="{{ asset('img/SMA/logo smanual.png') }}"">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!--===============================================================================================-->
@@ -39,7 +39,7 @@
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href="{{ route('view.dashboard2.admin') }}" target="_blank">
-                <img src="../images/undip.png" class="navbar-brand-img h-100" alt="logo" width="15%"
+                <img src="../img/SMA/logo smanual.png" class="navbar-brand-img h-100" alt="logo" width="15%"
                     height="40%">
                 <span class="ms-1 fs-5 font-weight-bold">Dasbor Admin</span>
             </a>

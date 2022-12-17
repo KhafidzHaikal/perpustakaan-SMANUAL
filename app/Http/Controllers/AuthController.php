@@ -75,7 +75,7 @@ class AuthController extends Controller
             return redirect()->route('view.dashboard2.admin');
         } else if (Auth::attempt(['email' => $request->email, 'password' => $request->password]) && $user->peran == 'user') {
             $request->session()->regenerate();
-            return redirect()->route('dashboard.user');
+            return redirect()->route('view.dashboard2.user');
         }
 
         return back()->withInput($request->only('email', 'remember'))->with('error', 'Anda belum terdaftar di Perpustakaan!');

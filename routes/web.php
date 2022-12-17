@@ -17,6 +17,8 @@ use App\Http\Controllers\BookController;
 
 /* Dashboard */
 
+Route::redirect('/', '/login');
+
 Route::get('/user/dashboard', [AuthController::class, 'dashboardUser'])->name('dashboard.user')->middleware(['auth', 'user']);
 Route::get('/admin/dashboard', [AuthController::class, 'dashboardAdmin'])->name('dashboard.admin')->middleware(['auth', 'admin']);
 
@@ -43,6 +45,7 @@ Route::get('/pengembalian', [BookController::class, 'viewPengembalianBuku'])->na
 
 /** TERBARU */
 Route::get('/admin/dashboard2', [BookController::class, 'viewDashboardAdmin2'])->name('view.dashboard2.admin')->middleware(['auth', 'admin']);
+Route::get('/user/dashboard2', [BookController::class, 'viewDashboardUser2'])->name('view.dashboard2.user')->middleware(['auth', 'user']);
 Route::get('/buku2', [BookController::class, 'viewDaftarBuku2'])->name('view.buku.2')->middleware('auth');
 Route::get('/buku/create2', [BookController::class, 'viewTambahBuku2'])->name('view.tambah.buku.2')->middleware(['auth', 'admin']);
 Route::get('/buku/edit2/{buku}', [BookController::class, 'viewEditBuku2'])->name('view.edit.buku.2')->middleware(['auth', 'admin']);

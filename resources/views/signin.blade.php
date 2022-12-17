@@ -24,7 +24,7 @@
 
 <body>
     <div class="layer"></div>
-    <main class="page-center">
+    <main class="page-center" style="background-image: url('{{ asset('img/SMA/halaman.jpg') }}')">>
         <article class="sign-up">
             <form class="sign-up-form form" action="{{ route('login') }}" method="POST">
                 @csrf

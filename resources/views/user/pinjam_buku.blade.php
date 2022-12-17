@@ -55,10 +55,10 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{{ route('dashboard.admin') }}" class="nav-item nav-link"><i
+                    <a href="{{ route('dashboard.admin2') }}" class="nav-item nav-link"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="{{ route('view.buku') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Buku</a>
-                    <a href="{{ route('view.pinjam.buku') }}" class="nav-item nav-link active"><i
+                    <a href="{{ route('view.buku2') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Buku</a>
+                    <a href="{{ route('view.pinjam.buku2') }}" class="nav-item nav-link active"><i
                             class="fa fa-keyboard me-2"></i>Peminjaman</a>
                     <form action={{ route('logout') }} method="POST">
                         @csrf
@@ -95,7 +95,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        @foreach ($peminjaman as $bk)
+                                        @foreach ($peminjaman as $pgw)
                                             <td class="text-center text-dark font-weight-bold">
                                                 {{ $loop->index + 1 }}</td>
                                             <td class="text-start text-dark font-weight-bold">
@@ -115,7 +115,7 @@
                 <div>
                     <p class="card-text">Peminjaman Tidak Ada!</p>
                 </div>
-                @endif
+                @endif <i class="fa fa-life-bouy" aria-hidden="true"></i>
             </div>
         </div>
     </div>
@@ -142,7 +142,7 @@
 
     <!-- Footer Start -->
     <!-- Footer End -->
-    
+
     <!-- Content End -->
 
 

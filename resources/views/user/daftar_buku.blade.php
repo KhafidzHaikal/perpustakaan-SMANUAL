@@ -116,11 +116,14 @@
                                             <td class="text-start text-dark font-weight-bold">
                                                 <form action={{ route('pinjam.buku', $bk->id) }} method="POST">
                                                     @csrf
-                                                    <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                    <button class="dropdown-item" href="#" data-toggle="modal"
+                                                        data-target="#logoutModal">
+                                                        <i
+                                                            class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                                         Pinjam
                                                     </button>
-                                                </form>                                            </td>
+                                                </form>
+                                            </td>
                                     </tr>
                     @endforeach
                     </tbody>

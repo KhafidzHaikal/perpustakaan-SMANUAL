@@ -140,7 +140,16 @@ class BookController extends Controller
     {
         $user = $request->user();
         $buku = Book::count();
-        return view('admin.dashboard2', compact('user', 'buku'));
+        $peminjaman = Peminjaman::count();
+        return view('admin.dashboard2', compact('user', 'buku', 'peminjaman'));
+    }
+
+    public function viewDashboardUser2(Request $request)
+    {
+        $user = $request->user();
+        $buku = Book::count();
+        $peminjaman = Peminjaman::count();
+        return view('user.dashboard2', compact('user', 'buku', 'peminjaman'));
     }
 
     public function viewDaftarBuku2(Request $request)
@@ -187,7 +196,7 @@ class BookController extends Controller
     public function viewPengembalianBuku2(Request $request)
     {
         $user = $request->user();
-        // $peminjaman = Peminjaman::get();
+        // $pengembalian = Peminjaman::get();
 
         if ($user->peran == 'admin') {
             return view('admin.pengembalian_buku2', compact('user'));

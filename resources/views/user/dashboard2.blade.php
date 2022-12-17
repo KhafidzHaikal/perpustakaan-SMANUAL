@@ -41,7 +41,7 @@
             <a class="navbar-brand m-0" href="#" target="_blank">
                 <img src="../img/SMA/logo smanual.png" class="navbar-brand-img h-100" alt="logo" width="15%"
                     height="40%">
-                <span class="ms-1 fs-5 font-weight-bold">Dasbor Admin</span>
+                <span class="ms-1 fs-5 font-weight-bold">Dasbor User</span>
             </a>
         </div>
         {{-- LOGO END --}}
@@ -52,7 +52,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link  active" href="{{ route('view.dashboard2.admin') }}">
+                    <a class="nav-link  active" href="{{ route('view.dashboard2.user') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             💻
@@ -175,7 +175,7 @@
                                 <script>
                                     document.write(new Date().getFullYear())
                                 </script>
-                                © Perpustakaan Al-Ma'ruf
+                                © Perpustakaan SMA NU AL MA'RUF
                             </p>
                         </div>
                     </div>

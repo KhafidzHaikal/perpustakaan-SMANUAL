@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>Daftar Peminjaman | Surat UPT</title>
+    <title>Daftar Peminjaman | Perpustakaan SMA NU AL MA'RUF</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ asset('images/undip.png') }}">
+    <link rel="icon" href="{{ asset('img/SMA/logo smanual.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!--===============================================================================================-->
@@ -170,19 +170,22 @@
                                             <tr>
                                                 <th
                                                     class="text-start text-uppercase text-dark text-xs font-weight-bolder  ps-2">
-                                                    📍</th>
+                                                    No.</th>
                                                 <th
                                                     class="text-start text-uppercase text-dark text-xs font-weight-bolder  ps-2">
-                                                    🧩 Nama Pegawai</th>
+                                                    🧩 Nama Buku</th>
                                                 <th
                                                     class="text-start text-uppercase text-dark text-xs font-weight-bolder  ps-2">
-                                                    📧 Email Pegawai</th>
+                                                    📧 Nama Pengarang</th>
                                                 <th
                                                     class="text-start text-uppercase text-dark text-xs font-weight-bolder  ps-2">
-                                                    🥇 Jabatan Pegawai</th>
+                                                    🥇 Penerbit</th>
                                                 <th
                                                     class="text-start text-uppercase text-dark text-xs font-weight-bolder  ps-2">
-                                                    🥇 Jabatan Pegawai</th>
+                                                    🥇 Tahun Terbit</th>
+                                                <th
+                                                    class="text-end text-uppercase text-dark text-xs font-weight-bolder  ps-2">
+                                                    🔧 Aksi</th>
                                                 {{-- <th
                                                     class="text-end text-uppercase text-dark text-xs font-weight-bolder  ps-2">
                                                     🔧 Aksi</th> --}}
@@ -202,10 +205,6 @@
                                                     <td class="text-start text-dark font-weight-bold">
                                                         {{ $pgw->tanggal_pengembalian }}</td>
                                                     <td class="text-end">
-                                                        {{-- <a class="btn btn-warning btn-sm text-dark"
-                                                            style="color: #F6F5FC"
-                                                            href="{{ route('view.edit.buku.2', $pgw->id) }}">🔍
-                                                            Edit</a>
                                                         <form action={{ route('hapus.buku', $pgw->id) }}
                                                             method="POST">
                                                             @csrf
@@ -213,7 +212,7 @@
                                                                 <i class="fa fa-trash"></i>
                                                                 Hapus
                                                             </button>
-                                                        </form> --}}
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach
